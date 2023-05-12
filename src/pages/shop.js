@@ -1,18 +1,19 @@
-import Layout from "@/components/Layout";
-import Hero from "@/components/Hero";
 import Shop from "@/components/Shop";
-// import { connectToDatabase, disconnectFromDatabase } from "../../lib/mongoose";
+import Layout from "@/components/Layout";
+import { connectToDatabase, disconnectFromDatabase } from "../../lib/mongoose";
 import { findAllProducts } from "./api/products";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import getProductSchema from "@/utils/productSchema";
+import Head from "next/head";
 
 export async function getServerSideProps({ res }) {
-  const cacheTime = 60 * 60 * 24;
+  const cacheTime = 60 * 60 * 24; // cache for 1 day
   res.setHeader(
     "Cache-Control",
     `public, max-age=${cacheTime}, stale-while-revalidate`
   );
+
+  await connectToDatabase();
   const products = await findAllProducts();
   const updatedProducts = products.map((product) => ({
     ...product,
@@ -21,6 +22,9 @@ export async function getServerSideProps({ res }) {
   }));
 
   const schema = getProductSchema(updatedProducts);
+  console.log(schema);
+
+  await disconnectFromDatabase();
 
   return {
     props: {
@@ -30,9 +34,8 @@ export async function getServerSideProps({ res }) {
   };
 }
 
-export default function Home({ products, schema }) {
+export default function shop({ products, schema }) {
   const router = useRouter();
-
   return (
     <>
       <Head>
@@ -40,40 +43,38 @@ export default function Home({ products, schema }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
-        <title>Echo - Buy Mobiles, Audio, and Laptops Online</title>
-        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+        <title>Shop Audio, Laptops, and Mobiles at Echo | Buy Online</title>
         <meta
           name="description"
-          content="Shop for the latest mobile phones, headphones, speakers, and laptops online at Echo. Enjoy fast delivery, easy returns, and secure payments."
+          content="Discover the latest in audio, laptops, and mobiles at Echo. Shop now for a wide selection of products at great prices. Fast and free shipping available on eligible orders."
         />
         <meta
           name="keywords"
-          content="echo, mobiles, audio, headphones, speakers, laptops, online shopping"
+          content="audio, laptops, mobiles, headphones, speakers, smartphones, tablets, computers, gaming laptops, MacBook, Dell, HP, Lenovo, Samsung, Apple, Sony, Bose, JBL, Sennheiser, Beats, Asus"
         />
         <meta name="author" content="Echo Inc." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           property="og:title"
-          content="Echo - Buy Mobiles, Audio, and Laptops Online"
+          content="Shop Audio, Laptops, and Mobiles at Echo | Buy Online"
         />
         <meta
           property="og:description"
-          content="Shop for the latest mobile phones, headphones, speakers, and laptops online at Echo. Enjoy fast delivery, easy returns, and secure payments."
+          content="Discover the latest in audio, laptops, and mobiles at Echo. Shop now for a wide selection of products at great prices. Fast and free shipping available on eligible orders."
         />
         <meta property="og:image" content="/logo.png" />
         <meta
           name="twitter:title"
-          content="Echo - Buy Mobiles, Audio, and Laptops Online"
+          content="Shop Audio, Laptops, and Mobiles at Echo | Buy Online"
         />
         <meta
           name="twitter:description"
-          content="Shop for the latest mobile phones, headphones, speakers, and laptops online at Echo. Enjoy fast delivery, easy returns, and secure payments."
+          content="Discover the latest in audio, laptops, and mobiles at Echo. Shop now for a wide selection of products at great prices. Fast and free shipping available on eligible orders."
         />
         <meta name="twitter:image" content="/logo.png" />
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
       <Layout>
-        <Hero />
         <Shop products={products} router={router} />
       </Layout>
     </>
