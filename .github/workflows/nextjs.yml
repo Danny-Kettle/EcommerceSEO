@@ -62,10 +62,8 @@ jobs:
         with:
           name: site
           path: out
-      - name: Setup authentication token
-        run: echo "${{ secrets.GH_PAGES_TOKEN }}" > ./token.txt
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ./token.txt
+          deploy_key: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
