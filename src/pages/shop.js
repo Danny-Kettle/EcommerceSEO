@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import getProductSchema from "@/utils/productSchema";
 import Head from "next/head";
 
-export async function getServerSideProps({ res }) {
+export async function getStaticProps({ res }) {
   const cacheTime = 60 * 60 * 24; // cache for 1 day
   res.setHeader(
     "Cache-Control",
