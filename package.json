@@ -1,13 +1,16 @@
 {
   "name": "eccommerce-app",
+  "homepage": "https://danny-kettle.github.io/EcommerceSEO",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export" : "next export",
     "start": "next start",
     "generate-sitemap": "next-sitemap",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "next build && next export && npx gh-pages -d out"
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.52.1",
@@ -15,6 +18,7 @@
     "bcryptjs": "^2.4.3",
     "cypress": "^12.12.0",
     "dotenv": "^16.0.3",
+    "gh-pages": "^5.0.0",
     "mongodb": "^5.4.0",
     "mongoose": "^7.0.3",
     "next": "^13.3.0",
