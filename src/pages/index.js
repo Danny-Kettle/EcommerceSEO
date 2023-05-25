@@ -8,11 +8,6 @@ import Head from "next/head";
 import getProductSchema from "@/utils/productSchema";
 
 export async function getStaticProps({ res }) {
-  const cacheTime = 60 * 60 * 24;
-  res.setHeader(
-    "Cache-Control",
-    `public, max-age=${cacheTime}, stale-while-revalidate`
-  );
   const products = await findAllProducts();
   const updatedProducts = products.map((product) => ({
     ...product,

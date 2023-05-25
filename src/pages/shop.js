@@ -7,12 +7,6 @@ import getProductSchema from "@/utils/productSchema";
 import Head from "next/head";
 
 export async function getStaticProps({ res }) {
-  const cacheTime = 60 * 60 * 24; // cache for 1 day
-  res.setHeader(
-    "Cache-Control",
-    `public, max-age=${cacheTime}, stale-while-revalidate`
-  );
-
   await connectToDatabase();
   const products = await findAllProducts();
   const updatedProducts = products.map((product) => ({
