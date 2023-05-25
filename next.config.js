@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    loader: "akamai",
+    path: "",
   },
   basePath: "/EcommerceSEO",
   assetPrefix: "/EcommerceSEO",
