@@ -5,17 +5,13 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import "@/styles/globals.css";
-function RedirectToTrailingSlash() {
-  const router = useRouter();
+useEffect(() => {
+  const { pathname, asPath } = router;
 
-  useEffect(() => {
-    if (!router.asPath.endsWith("/")) {
-      router.push(router.asPath + "/", undefined, { shallow: true });
-    }
-  }, [router]);
-
-  return null;
-}
+  if (!asPath.endsWith("/") && pathname !== "") {
+    router.replace(`${pathname}/`, undefined, { shallow: true });
+  }
+}, [router]);
 
 function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -23,7 +19,6 @@ function App({ Component, pageProps: { session, ...pageProps } }) {
       <ProductProvider>
         <CartProvider>
           <Component {...pageProps} />
-          <RedirectToTrailingSlash />
         </CartProvider>
       </ProductProvider>
     </SessionProvider>
