@@ -6,7 +6,7 @@ const nextConfig = {
     path: "",
   },
   basePath: "/EcommerceSEO",
-  assetPrefix: "/EcommerceSEO",
+  assetPrefix: "/EcommerceSEO/",
 };
 
 module.exports = nextConfig;
