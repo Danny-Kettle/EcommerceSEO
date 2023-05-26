@@ -13,6 +13,12 @@ const Header = (props) => {
 
   let logoFill = path === "/" ? "#fff" : "red";
 
+  const addTrailingSlash = (path) => {
+    if (path === "/") {
+      return path;
+    }
+  };
+
   async function handleSignOut() {
     await signOut();
     router.push("/login");
@@ -124,7 +130,7 @@ const Header = (props) => {
         </svg>
         {props.showNav && (
           <nav className="flex-row flex mr-20 justify-end gap-12">
-            <Link href={"/"}>
+            <Link href={addTrailingSlash("/")}>
               <div
                 className={
                   (path === "/" ? "opacity-40 " : "") +
