@@ -14,7 +14,7 @@ export default function ProductPage() {
   const [relatedItems, setRelatedItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
   const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(false);
 
