@@ -15,7 +15,7 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const updateProducts = useCallback(async () => {
-    const response = await fetch(`../api/products/`, {
+    const response = await fetch(`../../api/products/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -29,14 +29,14 @@ export const ProductProvider = ({ children }) => {
   }, [products]);
 
   const fetchProducts = async () => {
-    const response = await fetch(`../api/products/`);
+    const response = await fetch(`../../api/products/`);
     const fetchedProducts = await response.json();
     setProducts(fetchedProducts);
     console.log("fetched products");
   };
 
   const stockDecrease = async (productsToUpdate) => {
-    const response = await fetch(`../api/products/?stockDecrement=true`, {
+    const response = await fetch(`../../api/products/?stockDecrement=true`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
