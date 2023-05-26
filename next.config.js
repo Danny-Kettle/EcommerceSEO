@@ -5,8 +5,16 @@ const nextConfig = {
     loader: "akamai",
     path: "",
   },
-  basePath: process.env.NODE_ENV === "production" ? "/EcommerceSEO/" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/EcommerceSEO/" : "",
+  basePath: process.env.NODE_ENV === "production" ? "/EcommerceSEO" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/EcommerceSEO" : "",
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: "/:path*/",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
