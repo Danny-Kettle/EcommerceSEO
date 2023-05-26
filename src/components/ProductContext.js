@@ -47,7 +47,7 @@ export const ProductProvider = ({ children }) => {
       throw new Error("Failed to update product.");
     }
   };
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -57,6 +57,7 @@ export const ProductProvider = ({ children }) => {
       products: products.map((product) => ({
         ...product,
         price: `${Number(product.price).toFixed(2)}`,
+        picture: `.${product.picture}`,
       })),
       setProducts,
       stockDecrease,

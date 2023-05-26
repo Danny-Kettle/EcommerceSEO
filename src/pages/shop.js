@@ -12,6 +12,7 @@ export async function getStaticProps({ res }) {
   const updatedProducts = products.map((product) => ({
     ...product,
     price: `${Number(product.price).toFixed(2)}`,
+    picture: `.${product.picture}`,
     description: `${product.description.slice(0, 150)}...`,
   }));
 

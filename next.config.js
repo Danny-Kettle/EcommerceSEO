@@ -5,8 +5,8 @@ const nextConfig = {
     loader: "akamai",
     path: "",
   },
-  basePath: "/EcommerceSEO",
-  assetPrefix: "/EcommerceSEO",
+  // basePath: "/EcommerceSEO",
+  // assetPrefix: "/EcommerceSEO",
 };
 
 module.exports = nextConfig;
