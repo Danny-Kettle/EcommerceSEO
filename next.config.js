@@ -6,7 +6,7 @@ const nextConfig = {
     path: "",
   },
   basePath: "/EcommerceSEO",
-  assetPrefix: "/EcommerceSEO/",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/EcommerceSEO/" : "",
 };
 
 module.exports = nextConfig;
