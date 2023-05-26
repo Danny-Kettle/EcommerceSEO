@@ -29,7 +29,7 @@ const Hero = ({ sectionRef }) => {
           </div>
           <div className="hidden md:block md:w-1/2">
             <div className="relative flex justify-center w-full">
-              <img src="/products/msi.png" alt="Tech accessories" />
+              <img src="./products/msi.png" alt="Tech accessories" />
             </div>
           </div>
         </div>

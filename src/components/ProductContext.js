@@ -57,7 +57,7 @@ export const ProductProvider = ({ children }) => {
       products: products.map((product) => ({
         ...product,
         price: `${Number(product.price).toFixed(2)}`,
-        picture: `.${product.picture}`,
+        picture: `..${product.picture}`,
       })),
       setProducts,
       stockDecrease,
