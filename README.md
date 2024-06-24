@@ -3,3 +3,6 @@
 
 <p>To run this project open the terminal navigate to the root directory and type ``` NPM run dev ```.</p>
 <p>If the database stops working it is because there are too many connections just restart the local server.</p>
+
+
+<H1>The database is currently not running for resource reasons</H1>
